@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#ff000000</color>
+    <color name="colorPrimaryDark">#ff000000</color>
+    <color name="colorAccent">#ff000000</color>
+
+    <color name="textColorPrimary">#aaa6a6</color>
+    <color name="textColorPrimaryDark">#ff000000</color>
+    <color name="dividerColor">#d9d6d6</color>
+    <color name="tabIndicatorColor">#ff000000</color>
+
+
+    <color name="toolbarBackground">@android:color/white</color>
+    <color name="toolbarTextColor">#ff000000</color>
+    <color name="toolbarTintColor">#ff000000</color>
+
+    <color name="toolbarBackgroundNight">#263238</color>
+    <color name="toolbarTextColorNight">@android:color/white</color>
+    <color name="toolbarTintColorNight">@android:color/white</color>
+
+</resources>

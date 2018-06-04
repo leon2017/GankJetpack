@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--福利 | Android | iOS | 休息视频 | 拓展资源 | 前端 | all-->
+    <string-array name="GankCategoryArray">
+        <item>全部</item>
+        <item>Android</item>
+        <item>iOS</item>
+        <item>休息视频</item>
+        <item>拓展资源</item>
+        <item>前端</item>
+        <item>福利</item>
+    </string-array>
+
+</resources>

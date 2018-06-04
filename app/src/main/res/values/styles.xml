@@ -1,0 +1,43 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+
+    <style name="DayTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="toolbarBackgroundColor">@color/toolbarBackground</item>
+        <item name="toolbarTextColor">@color/toolbarTextColor</item>
+        <item name="toolbarTintColor">@color/toolbarTintColor</item>
+    </style>
+
+    <style name="NightTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="toolbarBackgroundColor">@color/toolbarBackgroundNight</item>
+        <item name="toolbarTextColor">@color/toolbarTextColorNight</item>
+        <item name="toolbarTintColor">@color/toolbarTintColorNight</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" >
+        <item name="android:background">?attr/toolbarBackgroundColor</item>
+    </style>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <!-- Toolbar theme. -->
+    <style name="AppTheme.Toolbar" parent="AppTheme">
+        <item name="windowNoTitle">true</item>
+        <item name="actionMenuTextColor">?attr/toolbarTintColor</item>
+        <item name="android:textColorSecondary">?attr/toolbarTextColor</item>
+    </style>
+
+</resources>
