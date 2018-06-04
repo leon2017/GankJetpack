@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="wrap_content">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingBottom="15dp"
+        android:paddingEnd="15dp"
+        android:paddingStart="10dp"
+        android:paddingTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.wangjun.gankjetpack.widget.CircleTextView
+            android:id="@+id/tvIcon"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            app:backColor="@color/colorPrimary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="H" />
+
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvNameDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:textSize="11sp"
+            android:textColor="@color/textColorPrimary"
+            app:layout_constraintStart_toEndOf="@id/tvIcon"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="农夫山泉" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvSummary"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:ellipsize="end"
+            android:maxLines="5"
+            android:textColor="#ff000000"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tvIcon"
+            app:layout_constraintTop_toBottomOf="@id/tvNameDate"
+            tools:text="请尽快完成域名实名认证，全部存量域名(包括2017年7月18日之前注册/转入的域名)未通过实名将被注册局暂停解析，网站/邮箱无法访问！查看详情" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="0.5dp"
+        android:background="@color/dividerColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/container" />
+
+
+</android.support.constraint.ConstraintLayout>

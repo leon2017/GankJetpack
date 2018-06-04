@@ -1,16 +1,13 @@
 package com.wangjun.gankjetpack.repository
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
-import android.util.Log
+import android.arch.paging.PagedList
+import android.arch.paging.RxPagedListBuilder
 import com.wangjun.gankjetpack.base.BaseRepository
-import com.wangjun.gankjetpack.engine.ApiCreate
-import com.wangjun.gankjetpack.engine.GankService
-import com.wangjun.gankjetpack.entity.GankEntity
+import com.wangjun.gankjetpack.engine.NetworkState
 import com.wangjun.gankjetpack.entity.GankResultsItem
-import io.reactivex.Observer
+import com.wangjun.gankjetpack.repository.GankListDataSource.Companion.DEF_PAGE_SIZE
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
 /**
@@ -22,39 +19,30 @@ import io.reactivex.schedulers.Schedulers
  * <p>
  * E-mail:lijiawangjun@gmail.com
  */
-class GankRespository : BaseRepository() {
+class GankRespository constructor(var gankFctory: GankListDataSourceFactory) : BaseRepository() {
 
+    fun fetchGankData(): Observable<PagedList<GankResultsItem>> {
 
-    fun fetchGankData(page: Int, type: String, pageSize: Int): LiveData<List<GankResultsItem?>> {
-        val data = MutableLiveData<List<GankResultsItem?>>()
+        val config = PagedList.Config.Builder()
+                .setInitialLoadSizeHint(DEF_PAGE_SIZE)
+                .setPageSize(DEF_PAGE_SIZE)
+                .build()
 
-        ApiCreate.instance
-                .create(GankService::class.java)
-                .gank(type, page, pageSize)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(object : Observer<GankEntity> {
-                    override fun onComplete() {
-                        Log.d("GankRespository", "onComplete")
-                    }
+        val gankObservable: Observable<PagedList<GankResultsItem>> = RxPagedListBuilder(gankFctory, config)
+                .setInitialLoadKey(1)
+                .setFetchScheduler(Schedulers.io())
+                .setNotifyScheduler(AndroidSchedulers.mainThread())
+                .buildObservable()
+        return gankObservable
+    }
 
-                    override fun onSubscribe(d: Disposable) {
-                        Log.d("GankRespository", "onSubscribe")
-                        mDisposable = d
-                    }
+    fun getLoadDataStatus(): Observable<NetworkState> {
+        return gankFctory.observableEmitter.switchMap {dataSource ->
+            dataSource.mLoadStatus
+        }
+    }
 
-                    override fun onNext(t: GankEntity) {
-                        Log.d("GankRespository", "onNext")
-                        if (t.results != null && t.results.isNotEmpty())
-                            data.value = t.results
-                    }
-
-                    override fun onError(e: Throwable) {
-                        Log.d("GankRespository", "onError")
-                    }
-
-                })
-
-        return data
+    fun refreshGankData() {
+        fetchGankData()
     }
 }

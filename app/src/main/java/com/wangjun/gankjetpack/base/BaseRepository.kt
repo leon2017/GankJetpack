@@ -13,10 +13,10 @@ import io.reactivex.disposables.Disposable
  */
 open class BaseRepository {
 
-    internal lateinit var mDisposable: Disposable
+    internal var mDisposable: Disposable? = null
 
     fun destory(): Unit {
-        if (!mDisposable.isDisposed)
-            mDisposable.dispose()
+        if (mDisposable !=null && !mDisposable!!.isDisposed)
+            mDisposable!!.dispose()
     }
 }

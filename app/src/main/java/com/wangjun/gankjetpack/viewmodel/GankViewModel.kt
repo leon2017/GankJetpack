@@ -1,10 +1,15 @@
 package com.wangjun.gankjetpack.viewmodel
 
 import android.arch.lifecycle.LiveData
+import android.arch.lifecycle.LiveDataReactiveStreams
 import android.arch.paging.PagedList
 import com.wangjun.gankjetpack.base.BaseViewModel
+import com.wangjun.gankjetpack.engine.NetworkState
 import com.wangjun.gankjetpack.entity.GankResultsItem
 import com.wangjun.gankjetpack.repository.GankRespository
+import io.reactivex.BackpressureStrategy
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 
 /**
@@ -16,28 +21,37 @@ import com.wangjun.gankjetpack.repository.GankRespository
  * <p>
  * E-mail:lijiawangjun@gmail.com
  */
-class GankViewModel(var gankRespository: GankRespository) : BaseViewModel(gankRespository) {
-
-    private lateinit var mData: LiveData<PagedList<GankResultsItem?>>
-
-    private lateinit var mType: String
-    private var mPage: Int = 1
-    private val PAGE_SIZE = 20
+class GankViewModel constructor(private var gankRespository: GankRespository) : BaseViewModel(gankRespository) {
 
 
-    fun setTypeAndPage(type: String = "all", page: Int = 1) {
-        this.mType = type
-        this.mPage = page
+    /**
+     * 获取gank list data
+     */
+    fun fetchGankData(): LiveData<PagedList<GankResultsItem>> {
+        val result = gankRespository
+                .fetchGankData()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .toFlowable(BackpressureStrategy.BUFFER)
+
+        return LiveDataReactiveStreams.fromPublisher(result)
     }
 
-    fun startRequestGankData() {
-        val tempData = gankRespository.fetchGankData(mPage, mType, PAGE_SIZE)
+    /**
+     * 获取加载状态
+     */
+    fun fetchLoadStatus(): LiveData<NetworkState> {
+        val result = gankRespository
+                .getLoadDataStatus()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .toFlowable(BackpressureStrategy.BUFFER)
 
-
+        return LiveDataReactiveStreams.fromPublisher(result)
     }
 
-    fun getGankData(): LiveData<PagedList<GankResultsItem?>> {
-        return mData
+    fun refresh(){
+//        fetchGankData()
     }
 
 }
