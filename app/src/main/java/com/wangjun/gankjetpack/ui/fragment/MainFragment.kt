@@ -4,7 +4,7 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
-import android.support.v4.app.Fragment
+import android.os.Bundle
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -16,6 +16,7 @@ import com.wangjun.gankjetpack.base.BaseFragment
 import com.wangjun.gankjetpack.engine.Status
 import com.wangjun.gankjetpack.repository.GankListDataSourceFactory
 import com.wangjun.gankjetpack.repository.GankRespository
+import com.wangjun.gankjetpack.ui.activity.ARTICLE_URL
 import com.wangjun.gankjetpack.ui.adapter.GankCategoryAdapter
 import com.wangjun.gankjetpack.viewmodel.GankViewModel
 
@@ -40,9 +41,12 @@ class MainFragment : BaseFragment() {
     private lateinit var mLayoutManager: LinearLayoutManager
     private lateinit var mAdapter: GankCategoryAdapter
 
+
+    var mainItemClick: (Bundle) -> Unit = { _ -> }
+
     companion object {
         private val CATEGORY_INDEX = "category_index"
-        fun newInstance(index: Int): Fragment {
+        fun newInstance(index: Int): MainFragment {
             val fragment = MainFragment()
             var bundle = bundleOf(CATEGORY_INDEX to index)
             fragment.arguments = bundle
@@ -68,13 +72,14 @@ class MainFragment : BaseFragment() {
         mList.layoutManager = mLayoutManager
         mAdapter = GankCategoryAdapter()
         mAdapter.itemClick = { itemView, gankEntity ->
-            Toast.makeText(activity, "被点击了", Toast.LENGTH_SHORT).show()
+            val bundle = bundleOf(ARTICLE_URL to gankEntity.url)
+            mainItemClick(bundle)
         }
         mList.adapter = mAdapter
 
         mRefresh.setOnRefreshListener {
-//            Toast.makeText(activity, "刷新", Toast.LENGTH_SHORT).show()
-            viewModel.refresh()
+            //            Toast.makeText(activity, "刷新", Toast.LENGTH_SHORT).show()
+//            viewModel.refresh()
         }
     }
 

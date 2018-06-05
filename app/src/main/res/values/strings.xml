@@ -3,4 +3,7 @@
     <string name="action_settings">Settings</string>
     <string name="text_loading">载入中...</string>
     <string name="text_black_theme">主题切换</string>
+    <string name="main_fragment">MainFragment</string>
+    <string name="article_detail_activity">ArticleDetailActivity</string>
+    <string name="main_navigation_fragment">MainNavigationFragment</string>
 </resources>

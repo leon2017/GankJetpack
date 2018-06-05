@@ -1,4 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android">
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            app:startDestination="@+id/main_navigation_fragment">
+
+
+    <fragment
+        android:id="@+id/main_navigation_fragment"
+        android:name="com.wangjun.gankjetpack.ui.fragment.MainNavigationFragment"
+        android:label="@string/main_navigation_fragment"
+        tools:layout="@layout/fragment_main_navigation">
+
+        <argument
+            android:name="article_url"
+            android:defaultValue="http://www.bing.com"
+            app:type="string"
+            />
+
+        <action
+            android:id="@+id/action_main_fragment_to_article_detail_activity"
+            app:destination="@id/article_detail_activity"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+
+    </fragment>
+
+
+    <activity
+        android:id="@+id/article_detail_activity"
+        android:name="com.wangjun.gankjetpack.ui.activity.ArticleDetailActivity"
+        android:label="@string/article_detail_activity"
+        tools:layout="@layout/activity_base_brower"
+        />
 
 </navigation>
