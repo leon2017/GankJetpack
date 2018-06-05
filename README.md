@@ -6,7 +6,7 @@
 
 ## download
 
-<a href="https://fir.im/gankjetpack"> <img src="screenshots/ic_launcher-web.png" width="50px" height="50px"/> </a>
+<a href="https://fir.im/gankjetpack"> <img src="screenshots/ic_launcher-web.png" width="100px" height="100px"/> </a>
 
 ## 截图
 
