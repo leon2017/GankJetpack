@@ -9,7 +9,6 @@ import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import android.widget.Toast
 import androidx.core.os.bundleOf
 import com.wangjun.gankjetpack.R
 import com.wangjun.gankjetpack.base.BaseFragment
@@ -79,7 +78,7 @@ class MainFragment : BaseFragment() {
 
         mRefresh.setOnRefreshListener {
             //            Toast.makeText(activity, "刷新", Toast.LENGTH_SHORT).show()
-//            viewModel.refresh()
+            viewModel.refresh()
         }
     }
 

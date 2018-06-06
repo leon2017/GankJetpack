@@ -1,8 +1,11 @@
 package com.wangjun.gankjetpack.repository
 
+import android.arch.lifecycle.MutableLiveData
 import android.arch.paging.DataSource
 import com.wangjun.gankjetpack.entity.GankResultsItem
 import io.reactivex.subjects.PublishSubject
+
+
 
 
 /**
@@ -17,10 +20,13 @@ import io.reactivex.subjects.PublishSubject
 class GankListDataSourceFactory constructor(val category: String ):  DataSource.Factory<Int,GankResultsItem>(){
 
     var observableEmitter : PublishSubject<GankListDataSource> = PublishSubject.create()
+    var postLiveData: MutableLiveData<GankListDataSource>? = null
 
     override fun create(): DataSource<Int, GankResultsItem> {
         val dataSource = GankListDataSource(category)
         observableEmitter.onNext(dataSource)
+        postLiveData = MutableLiveData()
+        postLiveData!!.postValue(dataSource)
         return dataSource
     }
 }

@@ -51,7 +51,7 @@ class GankViewModel constructor(private var gankRespository: GankRespository) : 
     }
 
     fun refresh(){
-//        fetchGankData()
+        gankRespository.refreshGankData().value!!.invalidate()
     }
 
 }

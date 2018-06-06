@@ -4,6 +4,10 @@
 
 >  本App是基于谷歌推出的Android Jetpack架构组件的干货集中营, app功能很简单, 基本上是针对 LiveData + ViewModel + Navigation + Paging 的MVVM的练手demo,更多的强大功能，请参考google的官方api
 
+## Architecture
+
+<img src="screenshots/mvvm.png"/>
+
 ## download
 
 <a href="https://fir.im/gankjetpack"> <img src="screenshots/ic_launcher-web.png" width="100px" height="100px"/> </a>

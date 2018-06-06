@@ -1,5 +1,7 @@
 package com.wangjun.gankjetpack.repository
 
+import android.annotation.SuppressLint
+import android.arch.lifecycle.LiveData
 import android.arch.paging.PagedList
 import android.arch.paging.RxPagedListBuilder
 import com.wangjun.gankjetpack.base.BaseRepository
@@ -37,12 +39,13 @@ class GankRespository constructor(var gankFctory: GankListDataSourceFactory) : B
     }
 
     fun getLoadDataStatus(): Observable<NetworkState> {
-        return gankFctory.observableEmitter.switchMap {dataSource ->
+        return gankFctory.observableEmitter.switchMap { dataSource ->
             dataSource.mLoadStatus
         }
     }
 
-    fun refreshGankData() {
-        fetchGankData()
+    @SuppressLint("CheckResult")
+    fun refreshGankData(): LiveData<GankListDataSource> {
+        return gankFctory.postLiveData!!
     }
 }
