@@ -95,8 +95,14 @@ abstract class BaseBrowerActivity : BaseActivity() {
             }
 
             override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
-                view!!.loadUrl(request.toString())
-                return true
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    System.out.println("shouldOverrideUrlLoading 24====>" + request?.url)
+                }
+                return super.shouldOverrideUrlLoading(view, request)
+            }
+
+            override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
+                return super.shouldOverrideUrlLoading(view, url)
             }
         }
     }

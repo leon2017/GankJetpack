@@ -19,10 +19,10 @@ fun getTime(s: String?): String? {
     if (s.isNullOrEmpty()) {
         return s
     }
-    //"yyyy-MM-dd'T'HH:mm:ss.SSSXXX"
-    val oldDate = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX", Locale.getDefault())
-    val newDate = SimpleDateFormat("MMM d, yyyy", Locale.getDefault())
     try {
+        //"yyyy-MM-dd'T'HH:mm:ss.SSSXXX"
+        val oldDate = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS", Locale.getDefault())
+        val newDate = SimpleDateFormat("MMM d, yyyy", Locale.getDefault())
         val data = oldDate.parse(s)
         return newDate.format(data)
     } catch (e: ParseException) {
