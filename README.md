@@ -42,3 +42,7 @@ Jetpack - Architecture Components架构组件
 - [浅谈Android Architecture Components](http://mycommons.cn/2017/09/15/Android-Architecture-Components/#more)
 - [Android Jetpack之Paging初探](http://www.loongwind.com/archives/367.html)
 - [理解Android Architecture Components系列](https://www.jianshu.com/p/42eb71ec4a19)
+
+## 感谢
+
+> 感谢[Gank](http://gank.io/api) 提供开放的api
