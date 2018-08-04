@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit
 class ApiCreate {
 
     private val DEFAULT_TIMEOUT: Long = 15
-    private val BASE_URL = "http://www.gank.io/api/"
+    private val BASE_URL = "http://gank.io/api/"
     var mOkHttpClient: OkHttpClient? = null
     var mRetrofit: Retrofit? = null
 
